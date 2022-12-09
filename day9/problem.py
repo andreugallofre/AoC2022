@@ -22,29 +22,16 @@ def update_tails(rope: list, visited: list) -> None:
 
 def calculate_movements(problem_input: list, visited: list) -> list:
     rope = [[0, 0] for _ in range(10)]
+    directions = {"R": [0, 1], "L": [0, -1], "U": [-1, 0], "D": [1, 0]}
 
     for move in problem_input:
         mov = move.split(" ")
         positions = int(mov[1])
-        if mov[0] == "R":
-            for _ in range(positions):
-                rope[0][1] += 1
-                update_tails(rope, visited)
 
-        if mov[0] == "L":
-            for _ in range(positions):
-                rope[0][1] -= 1
-                update_tails(rope, visited)
-
-        if mov[0] == "U":
-            for _ in range(positions):
-                rope[0][0] -= 1
-                update_tails(rope, visited)
-
-        if mov[0] == "D":
-            for _ in range(positions):
-                rope[0][0] += 1
-                update_tails(rope, visited)
+        for _ in range(positions):
+            rope[0][0] += directions[mov[0]][0]
+            rope[0][1] += directions[mov[0]][1]
+            update_tails(rope, visited)
 
 
 def part_one(problem_input: list) -> int:
