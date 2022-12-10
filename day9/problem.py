@@ -20,7 +20,7 @@ def update_tails(rope: list, visited: list) -> None:
         visited[i - 1].append(tuple(rope[i]))
 
 
-def calculate_movements(problem_input: list, visited: list) -> list:
+def calculate_movements(problem_input: list, visited: list) -> None:
     rope = [[0, 0] for _ in range(10)]
     directions = {"R": [0, 1], "L": [0, -1], "U": [-1, 0], "D": [1, 0]}
 
@@ -43,5 +43,4 @@ def part_one(problem_input: list) -> int:
 def part_two(problem_input: list) -> int:
     visited = [[] for _ in range(9)]
     calculate_movements(problem_input, visited)
-
     return len(set(visited[8]))
